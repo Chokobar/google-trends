@@ -88,7 +88,7 @@ googleTrends.realTimeTrends({geo: 'US', category: CAT_ALL})
             // console.log('Entity Names: ')
             realtimeTrends += `<b>Entity Names</b>`
             element.entityNames.forEach(element => {
-                console.log(element);
+                // console.log(element);
                 realtimeTrends += `<p>${element}</p>`
             });
             if (element.image) {
