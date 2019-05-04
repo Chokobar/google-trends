@@ -23,13 +23,13 @@ googleTrends.dailyTrends({geo: GEO, hl: HL, timezone: TIMEZONE})
         data.default.trendingSearchesDays.forEach(element => {
             // console.log('#########################');
             // console.log('Date: ' + element.formattedDate);
-            dailyTrends += `<b>Date: </b><span>${element.formattedDate}</span>`
+            dailyTrends += `<b>Date: </b><span>${element.formattedDate}</span><p></p>`
 
             element.trendingSearches.forEach(element => {
                 // console.log('Query: ' + element.title.query);
                 // console.log('Traffic: ' + element.formattedTraffic);
-                dailyTrends += `<b>Query: </b><span>${element.title.query}</span>`
-                dailyTrends += `<b>Traffic: </b><span>${element.formattedTraffic}</span>`
+                dailyTrends += `<b>Query: </b><span>${element.title.query}</span><p></p>`
+                dailyTrends += `<b>Traffic: </b><span>${element.formattedTraffic}</span><p></p>`
 
                 if (element.relatedQueries.length > 0 && element.relatedQueries) {
                     // console.log('Relate Queries');
@@ -46,10 +46,10 @@ googleTrends.dailyTrends({geo: GEO, hl: HL, timezone: TIMEZONE})
                         // console.log('TimeAgo: ' + element.timeAgo);
                         // console.log('Source: ' + element.image.source);
                         // console.log('Url: ' + element.image.newsUrl);
-                        dailyTrends += `<b>Title: </b><span>${element.title}</span>`
-                        dailyTrends += `<b>TimeAgo: </b><span>${element.timeAgo}</span>`
-                        dailyTrends += `<b>Source: </b><span>${element.image.source}</span>`
-                        dailyTrends += `<b>Url: </b><span>${element.image.newsUrl}</span>`
+                        dailyTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
+                        dailyTrends += `<b>TimeAgo: </b><span>${element.timeAgo}</span><p></p>`
+                        dailyTrends += `<b>Source: </b><span>${element.image.source}</span><p></p>`
+                        dailyTrends += `<b>Url: </b><span>${element.image.newsUrl}</span><p></p>`
                     }
                 });
                 // console.log('#########################');
@@ -84,7 +84,7 @@ googleTrends.realTimeTrends({geo: 'US', category: CAT_ALL})
 
         data.storySummaries.trendingStories.forEach(element => {
             // console.log('Title: ' + element.title);
-            realtimeTrends += `<b>Title: </b><span>${element.title}</span>`
+            realtimeTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
             // console.log('Entity Names: ')
             realtimeTrends += `<b>Entity Names: </b>`
             element.entityNames.forEach(element => {
@@ -94,8 +94,8 @@ googleTrends.realTimeTrends({geo: 'US', category: CAT_ALL})
             if (element.image) {
                 // console.log('Source: ' + element.image.source);
                 // console.log('Url: ' + element.image.newsUrl);
-                realtimeTrends += `<b>Source: </b><span>${element.image.source}</span>`
-                realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span>`
+                realtimeTrends += `<b>Source: </b><span>${element.image.source}</span><p></p>`
+                realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span><p></p>`
             }
             element.articles.forEach(element => {
                 if (element.image) {
@@ -103,10 +103,10 @@ googleTrends.realTimeTrends({geo: 'US', category: CAT_ALL})
                     // console.log('TimeAgo: ' + element.timeAgo);
                     // console.log('Source: ' + element.image.source);
                     // console.log('Url: ' + element.image.newsUrl);
-                    realtimeTrends += `<b>Title: </b><span>${element.title}</span>`
-                    realtimeTrends += `<b>TimeAgo: </b><span>${element.timeAgo}</span>`
-                    realtimeTrends += `<b>Source: </b><span>${element.image.source}</span>`
-                    realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span>`
+                    realtimeTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
+                    realtimeTrends += `<b>TimeAgo: </b><span>${element.timeAgo}</span><p></p>`
+                    realtimeTrends += `<b>Source: </b><span>${element.image.source}</span><p></p>`
+                    realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span><p></p>`
                 }
             });
             // console.log('###############################');
@@ -128,7 +128,7 @@ googleTrends.realTimeTrends({geo: 'US', category: CAT_BUSINESS})
 
     data.storySummaries.trendingStories.forEach(element => {
         // console.log('Title: ' + element.title);
-        realtimeTrends += `<b>Title: </b><span>${element.title}</span>`
+        realtimeTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
         // console.log('Entity Names: ')
         realtimeTrends += `<b>Entity Names: </b>`
         element.entityNames.forEach(element => {
@@ -138,8 +138,8 @@ googleTrends.realTimeTrends({geo: 'US', category: CAT_BUSINESS})
         if (element.image) {
             // console.log('Source: ' + element.image.source);
             // console.log('Url: ' + element.image.newsUrl);
-            realtimeTrends += `<b>Source: </b><span>${element.image.source}</span>`
-            realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span>`
+            realtimeTrends += `<b>Source: </b><span>${element.image.source}</span><p></p>`
+            realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span><p></p>`
         }
         element.articles.forEach(element => {
             if (element.image) {
@@ -147,10 +147,10 @@ googleTrends.realTimeTrends({geo: 'US', category: CAT_BUSINESS})
                 // console.log('TimeAgo: ' + element.timeAgo);
                 // console.log('Source: ' + element.image.source);
                 // console.log('Url: ' + element.image.newsUrl);
-                realtimeTrends += `<b>Title: </b><span>${element.title}</span>`
-                realtimeTrends += `<b>TimeAgo: </b><span>${element.timeAgo}</span>`
-                realtimeTrends += `<b>Source: </b><span>${element.image.source}</span>`
-                realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span>`
+                realtimeTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
+                realtimeTrends += `<b>TimeAgo: </b><span>${element.timeAgo}</span><p></p>`
+                realtimeTrends += `<b>Source: </b><span>${element.image.source}</span><p></p>`
+                realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span><p></p>`
             }
         });
         // console.log('###############################');
