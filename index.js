@@ -58,108 +58,66 @@ googleTrends.dailyTrends({geo: GEO, hl: HL, timezone: TIMEZONE})
         });
         mailOptions.subject = 'Daily Trends';
         mailOptions.html = dailyTrends;
-        mail.sendingMail(mailOptions);
+        setInterval(mail.sendingMail(mailOptions), 1000);
     })
     .catch((err) => {
         console.log(err);
     });
-
-
-// Categories
-const CAT_ALL = 'all';
-const CAT_ENTERTAINMENT = 'e';
-const CAT_BUSINESS = 'b';
-const CAT_SCIANDTECH = 't';
-const CAT_HEALTH = 'm';
-const CAT_SPORTS = 's';
-const CAT_TOPSTORIES = 'h';
 
 let realtimeTrends = ''; // template: realtimeTrends += `<b></b><p>${}</p>`
 
 // realtimeTrends
-googleTrends.realTimeTrends({geo: 'US', category: CAT_ALL})
-    .then((results) => {
-        const data = JSON.parse(results);
-        if (!data.storySummaries.trendingStories) return console.log('no returning results');
+const realTimeTrends = (categoryOfTrends, labelName) => {
+    googleTrends.realTimeTrends({geo: 'US', category: [categoryOfTrends]})
+        .then((results) => {
+            const data = JSON.parse(results);
+            if (!data.storySummaries.trendingStories) return console.log('no returning results');
 
-        data.storySummaries.trendingStories.forEach(element => {
-            // console.log('Title: ' + element.title);
-            realtimeTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
-            // console.log('Entity Names: ')
-            realtimeTrends += `<b>Entity Names: </b>`
-            element.entityNames.forEach(element => {
-                // console.log(element);
-                realtimeTrends += `<p>${element}</p>`
-            });
-            if (element.image) {
-                // console.log('Source: ' + element.image.source);
-                // console.log('Url: ' + element.image.newsUrl);
-                realtimeTrends += `<b>Source: </b><span>${element.image.source}</span><p></p>`
-                realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span><p></p>`
-            }
-            element.articles.forEach(element => {
+            data.storySummaries.trendingStories.forEach(element => {
+                // console.log('Title: ' + element.title);
+                realtimeTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
+                // console.log('Entity Names: ')
+                realtimeTrends += `<b>Entity Names: </b>`
+                element.entityNames.forEach(element => {
+                    // console.log(element);
+                    realtimeTrends += `<p>${element}</p>`
+                });
                 if (element.image) {
-                    // console.log('Title: ' + element.title);
-                    // console.log('TimeAgo: ' + element.timeAgo);
                     // console.log('Source: ' + element.image.source);
                     // console.log('Url: ' + element.image.newsUrl);
-                    realtimeTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
-                    realtimeTrends += `<b>TimeAgo: </b><span>${element.timeAgo}</span><p></p>`
                     realtimeTrends += `<b>Source: </b><span>${element.image.source}</span><p></p>`
                     realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span><p></p>`
                 }
+                element.articles.forEach(element => {
+                    if (element.image) {
+                        // console.log('Title: ' + element.title);
+                        // console.log('TimeAgo: ' + element.timeAgo);
+                        // console.log('Source: ' + element.image.source);
+                        // console.log('Url: ' + element.image.newsUrl);
+                        realtimeTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
+                        realtimeTrends += `<b>TimeAgo: </b><span>${element.timeAgo}</span><p></p>`
+                        realtimeTrends += `<b>Source: </b><span>${element.image.source}</span><p></p>`
+                        realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span><p></p>`
+                    }
+                });
+                // console.log('###############################');
+                realtimeTrends += `<p>-------------------------</p>`;
             });
-            // console.log('###############################');
-            realtimeTrends += `<p>-------------------------</p>`;
+            mailOptions.subject = 'Real Time Trends ' + labelName;
+            mailOptions.html = realtimeTrends;
+            mail.sendingMail(mailOptions);
+        })
+        .catch((err) => {
+            console.log(err);
         });
-        mailOptions.subject = 'Real time Trends';
-        mailOptions.html = realtimeTrends;
-        mail.sendingMail(mailOptions);
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+}
 
-// realtimeTrends Business
-googleTrends.realTimeTrends({geo: 'US', category: CAT_BUSINESS})
-    .then((results) => {
-    const data = JSON.parse(results);
-    if (!data.storySummaries.trendingStories) return console.log('no returning results');
-
-    data.storySummaries.trendingStories.forEach(element => {
-        // console.log('Title: ' + element.title);
-        realtimeTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
-        // console.log('Entity Names: ')
-        realtimeTrends += `<b>Entity Names: </b>`
-        element.entityNames.forEach(element => {
-            // console.log(element);
-            realtimeTrends += `<p>${element}</p>`
-        });
-        if (element.image) {
-            // console.log('Source: ' + element.image.source);
-            // console.log('Url: ' + element.image.newsUrl);
-            realtimeTrends += `<b>Source: </b><span>${element.image.source}</span><p></p>`
-            realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span><p></p>`
-        }
-        element.articles.forEach(element => {
-            if (element.image) {
-                // console.log('Title: ' + element.title);
-                // console.log('TimeAgo: ' + element.timeAgo);
-                // console.log('Source: ' + element.image.source);
-                // console.log('Url: ' + element.image.newsUrl);
-                realtimeTrends += `<b>Title: </b><span>${element.title}</span><p></p>`
-                realtimeTrends += `<b>TimeAgo: </b><span>${element.timeAgo}</span><p></p>`
-                realtimeTrends += `<b>Source: </b><span>${element.image.source}</span><p></p>`
-                realtimeTrends += `<b>Url: </b><span>${element.image.newsUrl}</span><p></p>`
-            }
-        });
-        // console.log('###############################');
-        realtimeTrends += `<p>-------------------------</p>`;
-    });
-    mailOptions.subject = 'Real time Trends Business';
-    mailOptions.html = realtimeTrends;
-    mail.sendingMail(mailOptions);
-    })
-    .catch((err) => {
-    console.log(err);
-    });
+// Categories
+const CAT_ALL = 'all';
+const CAT_BUSINESS = 'b';
+const CAT_ENTERTAINMENT = 'e';
+const CAT_SCIANDTECH = 't';
+const CAT_HEALTH = 'm';
+const CAT_TOPSTORIES = 'h';
+const CAT_SPORTS = 's';
+realTimeTrends(CAT_ALL, 'All');
